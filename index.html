@@ -7,7 +7,7 @@
     <title>Cek Jodoh Aktor China</title>
     <style>
         body {
-            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-family: Arial, sans-serif; /* Mengubah font menjadi biasa */
             background-color: #f0f8ff;
             display: flex;
             flex-direction: column;
@@ -21,6 +21,7 @@
         h1 {
             color: #ff6f61;
             margin-bottom: 10px;
+            font-weight: bold; /* Menebalkan font */
         }
 
         h2 {
@@ -28,6 +29,7 @@
             font-size: 18px;
             margin-bottom: 20px;
             text-align: center;
+            font-weight: bold; /* Menebalkan font */
         }
 
         .container {
@@ -194,7 +196,7 @@
                    document.getElementById('loading').style.display = 'none';
                    document.getElementById('result').innerHTML = `
                    <p>jodoh kamu: <span>${jodoh}</span></p>
-                   `;
+                    `;
                }, 1000); // Delay before hiding loading animation
            }, 1500); // Delay for loading effect
 
