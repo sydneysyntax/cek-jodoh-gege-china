@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Jodoh Aktor China</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #ff6f61;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #d5006d;
+            font-size: 18px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #ffcccb;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+            position: relative; /* Position relative for absolute children */
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ff6f61;
+            border-radius: 5px;
+            width: calc(100% - 22px);
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ff3b2f;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .telegram-button {
+            margin-top: 70px;
+            padding: 6px 6px;
+            font-size: 12px;
+            background-color: #0088cc;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .telegram-button:hover {
+            background-color: #005f7f;
+        }
+
+        /* Loading Animation */
+        .loading {
+          position: absolute; 
+          top: 50%; 
+          left: 50%; 
+          transform: translate(-50%, -50%);
+          display: none; /* Hidden by default */
+          text-align:center; /* Center align text */
+      }
+        
+      .heart {
+          font-size: 50px; /* Size of heart */
+          animation-name: pulse; /* Animation name */
+          animation-duration: 1s; /* Duration of animation */
+          animation-timing-function: ease-in-out; /* Timing function */
+          animation-iteration-count: infinite; /* Infinite iterations */
+          color: #ff6f61; /* Heart color */
+      }
+
+      @keyframes pulse {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.5); }
+          100% { transform: scale(1); }
+      }
+
+      .jodoh-name {
+          font-size: 24px; /* Font size for jodoh name */
+          opacity: 0; /* Start invisible */
+          transition: opacity 0.5s ease-in-out; /* Smooth transition for opacity */
+      }
+
+      @media (max-width: 600px) {
+          h1 {
+              font-size: 24px; 
+          }
+          h2 {
+              font-size: 16px; 
+          }
+          .result {
+              font-size: 18px; 
+          }
+          button,
+          .telegram-button {
+              width: calc(100% - 20px); 
+              font-size: 14px; 
+          }
+      }
+    </style>
+</head>
+
+<body>
+    <h1>CEK JODOH MU</h1>
+    <h2>siapakah gege yang akan jadi jodoh mu?</h2>
+    <div class="container">
+        <input type="text" id="nama" placeholder="Ketik nama Anda">
+        <button onclick="cekJodoh()">Cek Jodoh</button>
+        <div class="result" id="result"></div>
+
+        <!-- Loading Animation -->
+        <div class="loading" id="loading">
+           <div class="heart">❤️</div>
+           <div id="jodohName" class="jodoh-name"></div> <!-- Placeholder for jodoh name -->
+       </div>
+    </div>
+
+    <button class="telegram-button" onclick="window.open('https://t.me/finhnest', '_blank')">by olyvia ehnleith on telegram</button>
+
+    <script>
+        const aktorChina = [
+           "Zhang Linghe", "Leo Yunxi", "Miles Wei", "Yang Yang", "Hu Yitian",
+           "tan jiarui", "Wang Yibo", "Xiao Zhan", "Gong jun", "Liu Yuning",
+           "Zhai Xiaowen", "wang Xingyue", "Chang Huasen", "Ao Ruipeng",
+           "Xu kai", "Yan an", "Chen Feiyu", "Wang Anyu", "Hou Minghao",
+           "Zheng Shuxi", "Chen Zheyuan", "Wu Lei", "lin yi", "Chen Xingxu",
+           "Zhang Zhehan", "Song Weilong", "Dylan Wang", "Cheng Yi",
+           "Zhou Yiran", "Ding Yuxi", "Wang Yuwen", "Tan jiaci", "Ren Jialun",
+           "Bi Wenjun","Bai Jingting","Li Hongyi",
+       ];
+
+       let checkedNames = []; // Array to store checked names
+
+       function cekJodoh() {
+           const nama = document.getElementById('nama').value.trim();
+
+           if (nama === "") {
+               alert("Silakan ketik nama Anda terlebih dahulu!");
+               return; // Validate empty input
+           }
+
+           if (checkedNames.includes(nama)) {
+               alert("Anda sudah melakukan cek jodoh untuk nama ini.");
+               return; // Prevent checking the same name again
+           }
+
+           // Show loading animation
+           document.getElementById('loading').style.display = 'block';
+           document.getElementById('jodohName').innerText = ''; // Clear previous name
+
+           setTimeout(() => { // Simulate loading delay
+               const randomIndex = Math.floor(Math.random() * aktorChina.length);
+               const jodoh = aktorChina[randomIndex];
+               
+               // Fade in the jodoh name
+               document.getElementById('jodohName').style.opacity = '1';
+
+               // Hide loading animation after displaying result
+               setTimeout(() => {
+                   document.getElementById('loading').style.display = 'none';
+                   document.getElementById('result').innerHTML = `
+                   <p>jodoh kamu: <span>${jodoh}</span></p>
+                   `;
+               }, 1000); // Delay before hiding loading animation
+           }, 1500); // Delay for loading effect
+
+           // Add the checked name to the array
+           checkedNames.push(nama);
+       }
+    </script>
+</body>
+
+</html>
